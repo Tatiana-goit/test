@@ -2,31 +2,156 @@
   {
     "id": "001",
     "name": "Luck",
-    "seriesCount": 5,
     "genre": "Family",
     "viewed": 1298,
-    "releaseDate": 2022,
-    "episodes": [
-        { "name": "Stranger things serie 1", "count": 1 },
-        { "name": "Stranger things serie 2", "count": 2 },
-        { "name": "Stranger things serie 3", "count": 3 },
-        { "name": "Stranger things serie 4", "count": 4 },
-        { "name": "Stranger things serie 5", "count": 5 }
-      ]
+    "releaseDate": 2022
   },
   {
     "id": "002",
     "name": "Loves in the villa",
-    "seriesCount": 5,
-    "genre": "Romance, Comedy",
+    "genre": "Family",
     "viewed": 892,
-    "releaseDate": 2022,
-    "episodes": [
-      { "name": "Stranger things serie 1", "count": 1 },
-      { "name": "Stranger things serie 2", "count": 2 },
-      { "name": "Stranger things serie 3", "count": 3 },
-      { "name": "Stranger things serie 4", "count": 4 },
-      { "name": "Stranger things serie 5", "count": 5 }
-    ]
+    "releaseDate": 2022
+  },
+  {
+    "id": "004",
+    "name": "Jurassic World Domination",
+    "genre": "Family",
+    "viewed": 2163,
+    "releaseDate": 2022
+  },
+  {
+    "id": "005",
+    "name": "Super pets",
+    "genre": "Family",
+    "viewed": 1360,
+    "releaseDate": 2022
+  },
+  {
+    "id": "006",
+    "name": "The Lord of the Rings: The Two Towers",
+    "genre": "Mystery",
+    "viewed": 1196,
+    "releaseDate": 2002
+  },
+  {
+    "id": "007",
+    "name": "The Shawshank Redemption",
+    "genre": "Drama",
+    "viewed": 1398,
+    "releaseDate": 1994
+  },
+  {
+    "id": "008",
+    "name": "Pinocchio",
+    "genre": "Family",
+    "viewed": 1698,
+    "releaseDate": 2022
+  },
+  {
+    "id": "009",
+    "name": "The Batman",
+    "genre": "Thriller",
+    "viewed": 1139,
+    "releaseDate": 2020
+  },
+  {
+    "id": "010",
+    "name": "White Noise",
+    "genre": "Action",
+    "viewed": 932,
+    "releaseDate": 2022
+  },
+  {
+    "id": "011",
+    "name": "Don't Worry Darling",
+    "genre": "Romance",
+    "viewed": 1222,
+    "releaseDate": 2022
+  },
+  {
+    "id": "012",
+    "name": "The Black Phone",
+    "genre": "Horror",
+    "viewed": 989,
+    "releaseDate": 2021
+  },
+  {
+    "id": "013",
+    "name": "Nope",
+    "genre": "Family",
+    "viewed": 1163,
+    "releaseDate": 2022
+  },
+  {
+    "id": "014",
+    "name": "Top Gun: Maverick",
+    "genre": "Adventure",
+    "viewed": 1362,
+    "releaseDate": 2022
+  },
+  {
+    "id": "015",
+    "name": "The Prestige",
+    "genre": "Family",
+    "viewed": 1198,
+    "releaseDate": 2006
+  },
+  {
+    "id": "016",
+    "name": "The Green Mile",
+    "genre": "Thriller",
+    "viewed": 1982,
+    "releaseDate": 1999
+  },
+  {
+    "id": "017",
+    "name": "The Dark Knight",
+    "genre": "Horror",
+    "viewed": 1060,
+    "releaseDate": 2008
+  },
+  {
+    "id": "018",
+    "name": "The Matrix",
+    "genre": "Fantasy",
+    "viewed": 2369,
+    "releaseDate": 1999
+  },
+  {
+    "id": "019",
+    "name": "Schindler's List",
+    "genre": "FamiDramaly",
+    "viewed": 2236,
+    "releaseDate": 1993
+  },
+  {
+    "id": "020",
+    "name": "Pulp Fiction",
+    "genre": "Thriller",
+    "viewed": 1892,
+    "releaseDate": 1994
+  },
+  {
+    "id": "021",
+    "name": "Minions",
+    "genre": "Family",
+    "viewed": 1366,
+    "releaseDate": 2003
+  },
+  {
+    "id": "022",
+    "name": "Light Year",
+    "genre": "Family",
+    "viewed": 1139,
+    "releaseDate": 2022
+  },
+  {
+    "id": "023",
+    "name": "The railway children return",
+    "genre": "Family",
+    "viewed": 1694,
+    "releaseDate": 2022
   }
 ]
+

@@ -1,24 +1,16 @@
 import series from "./films.json" assert { type: "json" }
-
-
-const getMostViewedShows = (shows) => {
-  const sortedShows = shows.sort((a, b) => b.viewed - a.viewed)
-  return sortedShows.slice(0, sortedShows.length / 2)
-}
-
-const getRandomShow = (shows) => {
-  return shows[Math.floor(Math.random() * shows.length)]
-}
-
-const getShowByName = (showList, name) => {
-  return showList.filter((item) => item.name === name)
-}
-
-const getShowsByGenre = (showList, genre) =>
-  showList.filter((item) => item.genre === genre)
-
-const getShowsByYear = (showList, releaseDate) =>
-  showList.filter((item) => item.releaseDate === releaseDate)
+const genres = {
+  action: "Action",
+  adventure: "Adventure",
+  comedy: "Comedy",
+  drama: "Drama",
+  family: "Family",
+  fantasy: "Fantasy",
+  horror: "Horror",
+  mystery: "Mystery",
+  romance: "Romance",
+  thriller: "Thriller",
+};
 
 const getUserSubscriptions = (subscriptions) => {
   const subscriptionList = []
@@ -46,6 +38,7 @@ class User {
     }
    return new Subscription(StreamingService)
   }
+
   userSubscriptions() {
     const list = getUserSubscriptions(this.subscriptions)
     console.log(`User ${this.name} is subscribed on ${list}`)
@@ -57,12 +50,9 @@ class Subscription {
     this.streamingService = StreamingService
   }
 
-  // const getShowByName = (showList, name) => {
-  //   return showList.filter((item) => item.name === name)
-  // }
+ watch(showName) {
+    const show = this.getShowByName(this.streamingService.shows, showName)[0]
 
-  watch(showName) {
-    const show = getShowByName(this.streamingService.shows, showName)[0]
     if (show === undefined) {
       console.log(`"${showName}" can not be found`)
     } else {
@@ -71,52 +61,67 @@ class Subscription {
       console.log(`Information about "${showName}": number of views: ${show.viewed},  genre: ${show.genre}, release date: ${show.releaseDate}`)
     } 
   }
-  
-  // const getRandomShow = (shows) => {
-  //   return shows[Math.floor(Math.random() * shows.length)]
-  // } 
 
-  getRecommendationByGenre(genre) {
-    // const result = getRandomShow(
-    //   this.streamingService.getMostViewedShowOfGenre(genre),
-    // )
-    // console.log(result)
-    // console.log(result.name)
+  getShowByName = (showList, showName) => {
+    return showList.filter((el) => el.name === showName)
   }
 
   getRecommendationTrending() {
-    const currentYear = new Date().getFullYear()
-    const result = getRandomShow(
-      this.streamingService.getMostViewedShowsOfYear(currentYear),
+    const releaseDate = new Date().getFullYear()
+    const result = this.getRandomShow(
+      this.streamingService.getMostViewedShowsOfYear(releaseDate),
     )
-    // console.log(result.name)
+    console.log(`Recommendationt trending show: "${result.name}"`)
   }
+
+  getRecommendationByGenre(genre) {
+    const result = this.getRandomShow(
+      this.streamingService.getMostViewedShowOfGenre(genre),
+    )
+    console.log(`Recommendationt show by genre: "${result.name}"`)
+  }
+
+  getRandomShow = (shows) => {
+    return shows[Math.floor(Math.random() * shows.length)]
+  } 
 }
 
 class StreamingService {
-  shows = []
+  shows = series
 
   constructor(name) {
     this.name = name
     this.shows = this.shows
   }
 
+
   addShow(show) {
     if (this.shows.includes(show)) {
-      console.log(`${show} has already exist`)
+      console.log(`"${show}" has already exist`)
     } else {
       this.shows.push(show)
-      // console.log(`${show.name} successfully added`)
+      console.log(`"${show.name}" successfully added, number of views: ${show.viewed},  genre: ${show.genre}, release date: ${show.releaseDate}`)
     }
   }
 
-  getMostViewedShowOfGenre(genre) {
-    return getMostViewedShows(getShowsByGenre(this.shows, genre))
+  getMostViewedShowsOfYear(releaseDate) {
+    return this.getMostViewedShows(this.getShowsByYear(this.shows, releaseDate))
   }
 
-  getMostViewedShowsOfYear(year) {
-    return getMostViewedShows(getShowsByYear(this.shows, year))
+  getMostViewedShowOfGenre(genre) {
+    return this.getMostViewedShows(this.getShowsByGenre(this.shows, genre))
   }
+
+  getMostViewedShows = (shows) => {
+    const sortedShows = shows.sort((a, b) => b.viewed - a.viewed)
+    return sortedShows.slice(0, sortedShows.length / 2)
+  }
+
+  getShowsByYear = (showList, releaseDate) =>
+    showList.filter((el) => el.releaseDate === releaseDate)
+
+  getShowsByGenre = (showList, genre) => 
+    showList.filter((el) => el.genre === genre)
 }
 
 class Show {
@@ -126,46 +131,80 @@ class Show {
     this.releaseDate = releaseDate
     this.viewed = viewed
   }
-}
-
-class Series extends Show {
-  episodes = []
-
-  constructor(name, genre, releaseDate, viewed, episodes) {
-    super(name, genre, releaseDate, viewed)
-    this.episodes = episodes
-  }
   getDuration() {
-    const duration = this.episodes.length * 60
+    const duration =  Math.round(60 - 0.5 + Math.random() * (81))
     console.log(`${this.name} duration is ${duration} min.`)
   }
 }
 
-// Start
-
-const megogo = new StreamingService('Megogo')
-
-for (let i = 0; i < series.length; i++) {
-  megogo.addShow(
-    new Series(
-      series[i].name,
-      series[i].genre,
-      series[i].releaseDate,
-      series[i].viewed,
-      series[i].episodes,
-    ),
-  )
+class Movie extends Show {
+  name;
+  genre;
+  releaseDate;
+  constructor(name, genre, releaseDate) {
+      super(name, genre, releaseDate);
+      this.name = name;
+      this.genre = genre;
+      this.releaseDate = releaseDate;
+  }
+}
+class Episode extends Show {
+  name;
+  genre;
+  releaseDate;
+  constructor(name, genre, releaseDate) {
+      super(name, genre, releaseDate);
+      this.name = name;
+      this.genre = genre;
+      this.releaseDate = releaseDate;
+  }
+}
+class Series extends Show {
+  name;
+  genre;
+  releaseDate;
+  episodes;
+  constructor(name, genre, releaseDate, episodes) {
+      super(name, genre, releaseDate);
+      this.name = name;
+      this.genre = genre;
+      this.releaseDate = releaseDate;
+      this.episodes = episodes;
+  }
 }
 
+
+
+
+//create StreamingServices
+const megogo = new StreamingService('Megogo')
+const netflix = new StreamingService('Netflix')
+
+//create new User
 const Tatiana = new User('Tatiana', [])
 console.log("Сurrent user",Tatiana.name)
 console.log("StreamingService",megogo.name)
 
-
+// check watch the show
 const megogoSubscription = Tatiana.subscribe(megogo)
-// console.log(megogoSubscription.streamingService.shows);
-
 megogoSubscription.watch('Luck')
 megogoSubscription.watch('Right way')
-megogoSubscription.getRecommendationByGenre('drama')
+
+//check getRecommendationByGenre, getRecommendationTrending
 megogoSubscription.getRecommendationTrending()
+megogoSubscription.getRecommendationTrending()
+megogoSubscription.getRecommendationTrending()
+megogoSubscription.getRecommendationByGenre('Family')
+megogoSubscription.getRecommendationByGenre('Family')
+
+
+// check addShow
+megogo.addShow(
+  new Series (
+    "Big boss", genres.family, 2020, 1399)
+);
+megogo.addShow(
+  new Series (
+    "New adventure", genres.adventure, 2021, 997)
+);
+
