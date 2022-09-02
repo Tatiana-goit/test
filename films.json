@@ -1,0 +1,32 @@
+[
+  {
+    "id": "001",
+    "name": "Luck",
+    "seriesCount": 5,
+    "genre": "Family",
+    "viewed": 1298,
+    "releaseDate": 2022,
+    "episodes": [
+        { "name": "Stranger things serie 1", "count": 1 },
+        { "name": "Stranger things serie 2", "count": 2 },
+        { "name": "Stranger things serie 3", "count": 3 },
+        { "name": "Stranger things serie 4", "count": 4 },
+        { "name": "Stranger things serie 5", "count": 5 }
+      ]
+  },
+  {
+    "id": "002",
+    "name": "Loves in the villa",
+    "seriesCount": 5,
+    "genre": "Romance, Comedy",
+    "viewed": 892,
+    "releaseDate": 2022,
+    "episodes": [
+      { "name": "Stranger things serie 1", "count": 1 },
+      { "name": "Stranger things serie 2", "count": 2 },
+      { "name": "Stranger things serie 3", "count": 3 },
+      { "name": "Stranger things serie 4", "count": 4 },
+      { "name": "Stranger things serie 5", "count": 5 }
+    ]
+  }
+]
